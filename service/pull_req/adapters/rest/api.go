@@ -330,12 +330,6 @@ type ReassignResponse struct {
 	NewRev string      `json:"replaced_by"`
 }
 
-// ОШИБКА:
-// может назначиться при reassign reviewer, который уже есть среди reviewers в этом pr
-//
-// /
-//
-// /
 func NewReassignPRHandler(log *slog.Logger, pr core.PRPort) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req ReassignPRReq

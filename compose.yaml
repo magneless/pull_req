@@ -18,6 +18,13 @@ services:
       postgres:
         condition: service_healthy
 
+  tests:
+    image: tests:latest
+    build: tests
+    container_name: tests
+    restart: "no"
+    entrypoint: "true"
+
   postgres:
     image: postgres
     container_name: postgres

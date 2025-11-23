@@ -23,4 +23,4 @@ test:
 	@echo "test finished"
 
 lint:
-	make -C search-services lint
+	make -C service lint

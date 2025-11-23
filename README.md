@@ -43,31 +43,41 @@
 ```bash
 .
 ├── compose.yaml
+├── load_tests
+│   ├── Dockerfile
+│   ├── entrypoint.sh
+│   └── seeder
+│       └── main.go
 ├── Makefile
 ├── migrations
 │   ├── 000001_init.down.sql
 │   └── 000001_init.up.sql
 ├── README.md
-└── service
-    ├── Dockerfile.pull_req
+├── service
+│   ├── Dockerfile.pull_req
+│   ├── go.mod
+│   ├── go.sum
+│   ├── Makefile
+│   └── pull_req
+│       ├── adapters
+│       │   ├── db
+│       │   │   └── storage.go
+│       │   └── rest
+│       │       └── api.go
+│       ├── config
+│       │   └── config.go
+│       ├── config.yaml
+│       ├── core
+│       │   ├── errors.go
+│       │   ├── models.go
+│       │   ├── ports.go
+│       │   └── service.go
+│       └── main.go
+└── tests
+    ├── Dockerfile
+    ├── e2e_test.go
     ├── go.mod
-    ├── go.sum
-    ├── Makefile
-    └── pull_req
-        ├── adapters
-        │   ├── db
-        │   │   └── storage.go
-        │   └── rest
-        │       └── api.go
-        ├── config
-        │   └── config.go
-        ├── config.yaml
-        ├── core
-        │   ├── errors.go
-        │   ├── models.go
-        │   ├── ports.go
-        │   └── service.go
-        └── main.go
+    └── go.sum
 ```
 ## Архитектура:
 Была выбрана гексагональная архитектура, выделены адаптеры:

@@ -1,5 +1,7 @@
 package core
 
+import "time"
+
 type TeamMember struct {
 	ID       string
 	Name     string
@@ -28,6 +30,5 @@ type PullRequestShort struct {
 type PullRequest struct {
 	PullRequestShort
 	Reviewers []string
-	CreatedAt string
-	MergedAt  string
+	MergedAt  *time.Time
 }

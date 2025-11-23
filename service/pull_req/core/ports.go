@@ -12,9 +12,9 @@ type UserPort interface {
 }
 
 type PRPort interface {
-	Create(ctx context.Context, pqID, name, authorID string) (PullRequest, error)
+	Create(ctx context.Context, prID, name, authorID string) (PullRequest, error)
 	Merge(ctx context.Context, id string) (PullRequest, error)
-	Reassign(ctx context.Context, pqID, oldReviewerID string) (PullRequest, error)
+	Reassign(ctx context.Context, prID, oldReviewerID string) (PullRequest, string, error)
 	ListByReviewer(ctx context.Context, reviewerID string) ([]PullRequestShort, error)
 }
 
@@ -28,8 +28,10 @@ type UserDB interface {
 }
 
 type PRDB interface {
-	Add(ctx context.Context, pqID, name, authorID string) (PullRequest, error)
+	Get(ctx context.Context, id string) (PullRequest, error)
+	GetActiveTeamMemberIDsByUserID(ctx context.Context, userID string) ([]string, error)
+	Add(ctx context.Context, prID, name, authorID string, reviewersID []string) error
 	UpdateMerged(ctx context.Context, id string) (PullRequest, error)
-	UpdateReviewer(ctx context.Context, pqID, oldReviewerID string) (PullRequest, error)
+	UpdateReviewer(ctx context.Context, prID, oldReviewerID, newReviewerID string) (PullRequest, error)
 	GetByReviewer(ctx context.Context, reviewerID string) ([]PullRequestShort, error)
 }

@@ -1,0 +1,5 @@
+log_level: DEBUG
+db_address: localhost:8081
+pull_req_server:
+  address: localhost:8080
+  timeout: 5s

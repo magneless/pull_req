@@ -1,0 +1,13 @@
+FROM golang:1.25 AS build
+
+COPY go.mod go.sum /src/
+COPY pull_req /src/pull_req
+
+ENV CGO_ENABLED=0
+RUN cd /src && go build -o /pull_req pull_req/main.go
+
+FROM alpine:3.20
+
+COPY --from=build /pull_req /pull_req
+
+ENTRYPOINT [ "/pull_req" ]

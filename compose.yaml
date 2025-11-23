@@ -24,6 +24,14 @@ services:
     container_name: tests
     restart: "no"
     entrypoint: "true"
+  
+  load_test:
+    build:
+      context: load_tests
+    container_name: load_test
+    depends_on:
+      - pull_req
+    restart: "no"
 
   postgres:
     image: postgres

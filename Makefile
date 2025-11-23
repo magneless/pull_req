@@ -14,6 +14,12 @@ clean:
 run-tests: 
 	${container_runtime} run --rm --network=host tests:latest
 
+load-test:
+	make clean
+	make up
+	${container_runtime} compose up --build load_test
+	make clean
+
 test:
 	make clean
 	make up
